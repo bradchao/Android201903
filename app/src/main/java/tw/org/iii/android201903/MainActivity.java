@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.input);
         log = findViewById(R.id.log);
         answer = createAnswer(3);
-
+        Log.v("brad", answer);
     }
 
     private String createAnswer(){
@@ -52,10 +52,25 @@ public class MainActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    private String checkAB(String g){
+        int a, b; a = b =0;
+
+        for (int i=0; i<answer.length(); i++){
+            if (g.charAt(i) == answer.charAt(i)){
+                a++;
+            }else if(answer.indexOf(g.charAt(i)) != -1){
+                b++;
+            }
+        }
+
+        return a + "A" + b + "B";
+    }
+
     public void guess(View view) {
         String strInput = input.getText().toString();
 
-        log.append(strInput + " => " + "1A1B\n");
+        String result = checkAB(strInput);
+        log.append(strInput + " => " + result + "\n");
         input.setText("");
 
     }
