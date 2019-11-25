@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private String createAnswer(){
+    private String createAnswer(int dig){
         HashSet<Integer> set = new HashSet<>();
-        while (set.size()<3){
+        while (set.size()<dig){
             set.add((int)(Math.random()*10));
         }
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void guess(View view) {
-        answer = createAnswer();
+        answer = createAnswer(3);
         Log.v("brad", answer);
     }
 }
