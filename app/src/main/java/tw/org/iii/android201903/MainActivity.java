@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private String answer;
     private EditText input;
     private TextView log;
+    private int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +68,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void guess(View view) {
+        counter++;
         String strInput = input.getText().toString();
 
         String result = checkAB(strInput);
-        log.append(strInput + " => " + result + "\n");
+        log.append(counter + ". " + strInput + " => " + result + "\n");
         input.setText("");
 
+        if (result.equals("3A0B")){
+            // WINNER
+        }else if (counter == 10){
+            // LOSER
+        }
     }
+
+    
 }
