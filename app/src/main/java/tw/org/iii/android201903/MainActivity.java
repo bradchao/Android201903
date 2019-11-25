@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         input = findViewById(R.id.input);
         log = findViewById(R.id.log);
-        answer = createAnswer(3);
-        Log.v("brad", answer);
+
+        newGame();
     }
 
     private String createAnswer(){
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         if (result.equals("3A0B")){
             // WINNER
             showDialog(true);
-        }else if (counter == 3){
+        }else if (counter == 10){
             // LOSER
             showDialog(false);
         }
@@ -96,11 +96,18 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                
+                newGame();
             }
         });
 
         alertDialog = builder.create();
         alertDialog.show();
     }
+
+    private void newGame(){
+        answer = createAnswer();
+        log.setText("");
+        counter = 0;
+    }
+
 }
