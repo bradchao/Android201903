@@ -3,6 +3,7 @@ package tw.org.iii.android201903;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -78,17 +79,27 @@ public class MainActivity extends AppCompatActivity {
 
         if (result.equals("3A0B")){
             // WINNER
-            showDialog();
-        }else if (counter == 10){
+            showDialog(true);
+        }else if (counter == 3){
             // LOSER
+            showDialog(false);
         }
     }
 
-    private void showDialog(){
+    private void showDialog(boolean isWinner){
         AlertDialog alertDialog = null;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Title");
-        builder.setMessage("xxxx");
+        builder.setTitle("Result");
+        builder.setMessage(isWinner?"WINNER":"Loser: " + answer);
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                
+            }
+        });
+
         alertDialog = builder.create();
         alertDialog.show();
     }
