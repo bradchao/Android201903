@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText input;
     private TextView log;
     private int counter;
+    private long lastTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,4 +112,31 @@ public class MainActivity extends AppCompatActivity {
         counter = 0;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.v("brad", "onDestroy");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Log.v("brad", "die");
+    }
+
+    @Override
+    public void finish() {
+        if (System.currentTimeMillis() - lastTime <= 3 *1000){
+            super.finish();
+        }else {
+            lastTime = System.currentTimeMillis();
+            Toast.makeText(this, "press back one more", Toast.LENGTH_SHORT).show();
+        }
+
+        Log.v("brad", "finish");
+    }
+
+    public void exit(View view) {
+        finish();
+    }
 }
