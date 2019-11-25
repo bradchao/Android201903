@@ -1,5 +1,6 @@
 package tw.org.iii.android201903;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -77,10 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (result.equals("3A0B")){
             // WINNER
+            showDialog();
         }else if (counter == 10){
             // LOSER
         }
     }
 
-    
+    private void showDialog(){
+        AlertDialog alertDialog = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
+        builder.setMessage("xxxx");
+        alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
